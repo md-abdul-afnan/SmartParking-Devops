@@ -1,0 +1,13 @@
+@startuml
+actor User
+participant Main
+participant ParkingService
+participant ParkingSlot
+
+User -> Main: Request to book slot
+Main -> ParkingService: bookSlot(bookingId, vehicleNo, slotId)
+ParkingService -> ParkingService: getSlotById(slotId)
+ParkingService -> ParkingSlot: setAvailable(false)
+ParkingService --> Main: Booking object
+Main --> User: Booking confirmed
+@enduml

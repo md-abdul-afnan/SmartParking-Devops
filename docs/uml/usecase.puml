@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+actor User
+actor Admin
+rectangle "Smart Parking Slot Booking System" {
+  usecase "View Available Slots" as UC1
+  usecase "Book Slot" as UC2
+  usecase "Cancel Booking" as UC3
+  usecase "Add Slot" as UC4
+  usecase "Delete Slot" as UC5
+}
+User --> UC1
+User --> UC2
+User --> UC3
+Admin --> UC4
+Admin --> UC5
+@enduml

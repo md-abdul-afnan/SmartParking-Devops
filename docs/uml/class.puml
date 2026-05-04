@@ -1,0 +1,24 @@
+@startuml
+class ParkingSlot {
+  - slotId: int
+  - slotType: String
+  - available: boolean
+}
+class Booking {
+  - bookingId: int
+  - vehicleNumber: String
+}
+class ParkingService {
+  + addSlot(slot)
+  + getAvailableSlots()
+  + bookSlot(bookingId, vehicleNumber, slotId)
+  + cancelBooking(bookingId)
+}
+class Main {
+  + main(args)
+}
+ParkingService "1" *-- "*" ParkingSlot
+ParkingService "1" *-- "*" Booking
+Booking --> ParkingSlot
+Main --> ParkingService
+@enduml

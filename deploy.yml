@@ -1,0 +1,24 @@
+---
+- name: Deploy Smart Parking Slot Booking System
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  tasks:
+    - name: Pull latest Docker image
+      community.docker.docker_image:
+        name: smart-parking-slot-booking-system
+        tag: latest
+        source: pull
+      ignore_errors: true
+
+    - name: Remove old container if exists
+      community.docker.docker_container:
+        name: smart-parking-app
+        state: absent
+
+    - name: Start smart parking container
+      community.docker.docker_container:
+        name: smart-parking-app
+        image: smart-parking-slot-booking-system:latest
+        state: started
+        recreate: true

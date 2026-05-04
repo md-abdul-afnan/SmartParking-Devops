@@ -1,0 +1,27 @@
+@startuml
+node "Developer PC" {
+  artifact "Java Source Code"
+  artifact "pom.xml"
+  artifact "Dockerfile"
+  artifact "Jenkinsfile"
+  artifact "deploy.yml"
+}
+node "GitHub" {
+  artifact "Remote Repository"
+}
+node "Jenkins Server" {
+  artifact "Build + Test Pipeline"
+}
+node "Docker Host" {
+  artifact "smart-parking image"
+  artifact "smart-parking-app container"
+}
+node "Ansible" {
+  artifact "deploy.yml playbook"
+}
+
+"Developer PC" --> "GitHub" : git push
+"GitHub" --> "Jenkins Server" : webhook trigger
+"Jenkins Server" --> "Docker Host" : docker build/run
+"Ansible" --> "Docker Host" : deploy/manage
+@enduml
